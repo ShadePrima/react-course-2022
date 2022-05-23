@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ClassCounter from './components/Counter/ClassCounter';
 import Counter from './components/Counter/Counter';
 import PostItem from './components/PostItem/PostItem';
@@ -15,13 +15,23 @@ function App() {
 
   ])
 
-  const [title, setTitle] = useState("example")
+  const [title, setTitle] = useState("")
+  const [body, setBody] = useState("")
+
+
 
   const addNewPost = (e) => {
     e.preventDefault()
-    console.log(title)
+    const newPost = {
+      id: Date.now(),
+      title,
+      body
+    }
+    setPosts([...posts, newPost])
+    setTitle('')
+    setBody('')
   }
- 
+  
 
 
   return (
@@ -33,7 +43,13 @@ function App() {
         type="text" 
         placeholder="Name post"      
         />
-        <MyInput type="text" placeholder="Post description"/>
+
+        <MyInput 
+        value={body}
+        onChange={e => setBody(e.target.value)}
+        type="text" 
+        placeholder="Post description"          
+        />
         <MyButton onClick={addNewPost}>Create post</MyButton>
       </form>
       <PostList posts={posts} title="Posts of JS"/>

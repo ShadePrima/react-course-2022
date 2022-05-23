@@ -7,4 +7,4 @@ const MyInput = (props) => {
   )
 }
 
-export default MyInput
+export default MyInput 
