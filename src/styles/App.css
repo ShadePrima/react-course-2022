@@ -7,10 +7,12 @@
 #root {
     display: flex;
     justify-content: center;
+    margin: 0 15px;
 }
 
 .App {
     width: 800px;
+    margin: 0 10px;
 }
 
 .post {
@@ -22,5 +24,5 @@
     align-items: center;
     border-radius: 5px;
     box-shadow: 3px 2px 1px teal;
-    background-color: rgb(235, 248, 248);    
+    background-color: rgb(235, 248, 248);
 }
