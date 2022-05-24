@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import ClassCounter from './components/Counter/ClassCounter';
 import Counter from './components/Counter/Counter';
+import PostForm from './components/PostForm/PostForm';
 import PostItem from './components/PostItem/PostItem';
 import PostList from './components/PostList/PostList';
 import MyButton from './components/UI/button/MyButton';
@@ -15,39 +16,25 @@ function App() {
 
   ])
 
-  const [post, setPost] = useState({title: '', body: ''})
-
-
-
-
-  const addNewPost = (e) => {
-    e.preventDefault()  
-    setPosts([...posts, {...post, id: Date.now()}])
-    setPost({title: '', body: ''})
-
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
   }
-  
 
+  const removePost = (post) => {
+    setPosts(posts.filter(p => p.id !== post.id))
+  }
 
   return (
     <div className="App">
-      <form>
-        <MyInput
-        value={post.title}
-        onChange={e => setPost({...post, title: e.target.value })}
-        type="text" 
-        placeholder="Name post"      
-        />
-
-        <MyInput 
-        value={post.body}
-        onChange={e => setPost({...post, body:e.target.value})}
-        type="text" 
-        placeholder="Post description"          
-        />
-        <MyButton onClick={addNewPost}>Create post</MyButton>
-      </form>
-      <PostList posts={posts} title="Posts of JS"/>
+      <PostForm create={createPost}/>
+      {posts.length !== 0
+        ? 
+        <PostList remove={removePost} posts={posts} title="Posts of JS"/>
+        : 
+        <h1 style={{textAlign: "center", color: "teal"}}>
+          No posts found
+        </h1>
+      }      
     </div>
   );
 }
