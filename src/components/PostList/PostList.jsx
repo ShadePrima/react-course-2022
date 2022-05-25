@@ -1,10 +1,11 @@
 import React from 'react'
 import PostItem from '../PostItem/PostItem'
+import classes from './PostList.module.css'
 
 const PostList = ({posts, title, remove}) => {
     return (
         <div>
-            <h1 style={{ textAlign: "center" }}>
+            <h1 className={classes.myTitle}>
                 {title}
             </h1>
             {posts.map((post, index) =>
