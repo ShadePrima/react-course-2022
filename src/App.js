@@ -49,9 +49,8 @@ function App() {
       </MyButton>
       <MyModal visible={modal} setVisible={setModal}>
         <PostForm create={createPost}/>
-      </MyModal>
-      
-      <hr style={{margin: "15px 0"}}/>
+      </MyModal>      
+
       <PostFilter
         filter={filter}
         setFilter={setFilter}
